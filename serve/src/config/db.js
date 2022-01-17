@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize({
+const sequelize = new Sequelize('crud-db', 'user', 'password', {
   dialect: 'sqlite',
-  storage: './database.sqlite',
+  host: './dev.sqlite',
 });
 
 module.exports = sequelize;
