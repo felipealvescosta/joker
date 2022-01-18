@@ -12,10 +12,13 @@
   "author": "Felipe Alves",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "cors": "^2.8.5",
     "dotenv": "^12.0.4",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
     "sequelize": "^6.13.0",
+    "sha1": "^1.1.1",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
