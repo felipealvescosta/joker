@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const Joke = require('./joke');
 
 class Evaluated extends Model {}
 
@@ -13,8 +14,8 @@ Evaluated.init(
     userId: {
       type: DataTypes.NUMBER,
     },
-    jokeId: {
-      type: DataTypes.NUMBER,
+    vote: {
+      type: DataTypes.BOOLEAN,
     },
   },
   {
@@ -23,5 +24,14 @@ Evaluated.init(
     timestamps: false,
   }
 );
+
+Evaluated.belongsTo(Joke, {
+  constraint: true,
+  foreignKey: 'jokeId',
+});
+
+Joke.hasMany(Evaluated, {
+  foreignKey: 'jokeId',
+});
 
 module.exports = Evaluated;

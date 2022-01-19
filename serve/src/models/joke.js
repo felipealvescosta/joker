@@ -5,10 +5,9 @@ class Joke extends Model {}
 
 Joke.init(
   {
-    uid: {
-      type: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.NUMBER,
       primaryKey: true,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.BOOLEAN,
@@ -18,9 +17,6 @@ Joke.init(
     },
     joke: {
       type: DataTypes.STRING,
-    },
-    id: {
-      type: DataTypes.NUMBER,
     },
     lang: {
       type: DataTypes.STRING,

@@ -14,4 +14,20 @@ export const styles = StyleSheet.create({
     margin: 20,
     fontFamily: 'Rokkitt_400Regular',
   },
+  emptyStatys:{
+    fontSize: 18,
+    fontFamily: 'Rokkitt_300Light',
+
+    textAlign: 'center',
+
+    marginTop: '40%',
+  },
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 40,
+  },
+  buttonRate: {
+    position: 'absolute',
+  },
 });

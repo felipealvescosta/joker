@@ -1,4 +1,5 @@
-const User = require('../models/userModel');
+const SHA1 = require('sha1');
+const User = require('../models/user');
 
 module.exports = {
   async index(request, response) {
@@ -11,8 +12,19 @@ module.exports = {
     }
   },
   async create(request, response) {
+    const { name, email, password, isAdmin } = request.body.values;
+    console.log(request.body.values);
+    const secretPass = SHA1(password);
+
+    const user = {
+      name,
+      email,
+      password: secretPass,
+      isAdmin: false,
+    };
+
     try {
-      await User.create(request.body);
+      await User.create(user);
       return response.status(200).json('User inserted!!');
     } catch (error) {
       console.log(error);

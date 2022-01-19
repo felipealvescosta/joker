@@ -8,6 +8,7 @@ const userController = require('./controllers/userController');
 const jokeController = require('./controllers/jokeController');
 
 routes.post('/login', loginController.auth);
+routes.post('/signup', userController.create);
 
 routes.use(authMiddleware);
 

@@ -1,42 +1,49 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import {Home} from '../screens/Home/home.screen';
-import {Users} from '../screens/Users/users.screen';
-import {User} from '../screens/User/user.screen';
+import { Home } from '../screens/Home/home.screen'
+import { Users } from '../screens/Users/users.screen'
+import { User } from '../screens/User/user.screen'
+import { NewUser } from '../screens/NewUser/newUser.screen'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
-
-export function AppRoutes() {
+export function AppRoutes () {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen
-          name="Home"
+          name='Home'
           component={Home}
           options={{
-            headerShown: false,
+            headerShown: false
           }}
         />
 
         <Stack.Screen
-          name="Users"
+          name='Users'
           component={Users}
           options={{
-            headerShown: false,
+            headerShown: false
           }}
         />
 
         <Stack.Screen
-          name="User"
+          name='User'
           component={User}
           options={{
-            headerShown: false,
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name='NewUser'
+          component={NewUser}
+          options={{
+            headerShown: false
           }}
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }

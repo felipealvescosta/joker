@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Text, View, ActivityIndicator } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
-
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import api from '../../services/api'
 
 import { Header } from '../../components/Header/header.component'
@@ -13,6 +12,7 @@ import { styles } from './styles'
 export function Users () {
   const [users, setUsers] = useState()
   const [isLoading, setLoading] = useState('false')
+  const navigation = useNavigation()
 
   useFocusEffect(
     useCallback(() => {
@@ -28,6 +28,10 @@ export function Users () {
     }, [])
   )
 
+  function handleNewUser(){
+    navigation.navigate('NewUser');
+  }
+
   return (
     <>
       <View style={styles.content}>
@@ -38,7 +42,7 @@ export function Users () {
         ) : (
           <View>
             <ListUsers users={users} />
-            <Footer name='Register new user' action={() => {}} />
+            <Footer name='Register new user' action={handleNewUser} />
           </View>
         )}
       </View>

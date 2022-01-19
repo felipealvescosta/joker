@@ -14,14 +14,17 @@ import {
 
 import * as Animatable from 'react-native-animatable'
 import { useFormik } from 'formik'
+import { useNavigation } from '@react-navigation/native'
+
 import { useAuth } from '../../hooks/auth'
 
 import { Input } from '../../components/Input/input.component'
 
 import Logo from '../../assets/icon.png'
-import styles from './login.style'
+import styles from './signin.style'
 
-export default function Login () {
+export default function SignIn () {
+  const navigation = useNavigation()
   const { signIn, loading } = useAuth()
   const formik = useFormik({
     initialValues: {
@@ -77,6 +80,10 @@ export default function Login () {
         useNativeDriver: false
       })
     ]).start()
+  }
+
+  function handleSignUp() {
+    navigation.navigate('SignUp');
   }
 
   return (
@@ -149,7 +156,7 @@ export default function Login () {
             )}
           </TouchableOpacity>
           <Text style={styles.or}>or</Text>
-          <TouchableOpacity style={styles.signUpButton}>
+          <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
             <Text style={styles.signUpText}>Sign Up</Text>
           </TouchableOpacity>
         </Animatable.View>

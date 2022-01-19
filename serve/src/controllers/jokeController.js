@@ -1,17 +1,33 @@
-const Joke = require('../models/jokeModel');
-const Evaluated = require('../models/evaluatedJoke');
+const Joke = require('../models/joke');
+const Evaluated = require('../models/evaluated');
 const Api = require('../services/api');
 
 module.exports = {
   async index(request, response) {
     try {
-      const jokes = await Joke.findAll();
-      response.status(200).json(jokes);
+      const jokes = await Joke.findAll({
+        include: Evaluated,
+      });
+
+      const jokesWithVotes = jokes.map((item) => {
+        const joke = {
+          id: item.id,
+          joke: item.joke,
+          category: item.category,
+          evaluated: item.evaluateds,
+          positive: item.evaluateds.filter((p) => p.vote === true),
+          negative: item.evaluateds.filter((n) => n.vote === false),
+        };
+        return joke;
+      });
+
+      response.status(200).json(jokesWithVotes);
     } catch (error) {
       console.log(error);
       response.status(400).send(error);
     }
   },
+
   async search(request, response) {
     try {
       const { data } = await Api.get('joke/Any?amount=1&type=single');
@@ -24,8 +40,9 @@ module.exports = {
       response.status(400).send(error);
     }
   },
+
   async create(request, response) {
-    const { userId, id } = request.body;
+    const { userId, id, vote } = request.body;
 
     try {
       const joke = await Joke.findOne({ where: { id } });
@@ -36,19 +53,22 @@ module.exports = {
 
       await Evaluated.create({
         userId,
+        vote,
         jokeId: id,
       });
 
-      response.status(200).json('Joke evaluated!!');
+      response.status(201).json('Joke evaluated!!');
     } catch (error) {
       console.log(error);
       response.status(400).send(error);
     }
   },
+
   async one(request, response) {
     try {
       const { id } = request.params;
       const joke = await Joke.findOne({ where: { id } });
+
       if (!joke) {
         response.status(400).json('Joke not found');
       }
@@ -58,6 +78,7 @@ module.exports = {
       response.status(400).send(error);
     }
   },
+
   async update(request, response) {
     try {
       const { isHidden } = request.body;

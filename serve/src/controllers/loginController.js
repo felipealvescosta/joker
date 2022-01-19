@@ -1,6 +1,6 @@
 const SHA1 = require('sha1');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
+const User = require('../models/user');
 const authConfig = require('../config/auth');
 
 module.exports = {
@@ -22,7 +22,6 @@ module.exports = {
     if (user.password !== passwordHash) {
       response.status(401).json({ message: 'Incorrect Password!' });
     }
-
 
     const token = jwt.sign(
       {
