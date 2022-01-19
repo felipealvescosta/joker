@@ -16,22 +16,32 @@ module.exports = {
     });
 
     if (!user) {
-      response.status(201).json({ message: 'User not found!' });
+      response.status(404).json({ message: 'User not found!' });
     }
+
     if (user.password !== passwordHash) {
       response.status(401).json({ message: 'Incorrect Password!' });
     }
 
-    const token = jwt.sign({ email: user.email }, authConfig.secret, {
-      expiresIn: authConfig.expiresIn,
-    });
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        name: user.name,
+      },
+      authConfig.secret,
+      {
+        expiresIn: authConfig.expiresIn,
+      }
+    );
 
     if (token) {
       response.json({
+        user,
         token,
       });
     } else {
-      response.status(404).json({ message: 'Incorrect data, try again!' });
+      response.status(401).json({ message: 'Incorrect data, try again!' });
     }
   },
 };

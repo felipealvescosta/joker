@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
 
-export default function App() {
+import React from 'react'
+import AppLoading from 'expo-app-loading'
+
+import AuthProvider from './src/hooks/auth'
+import Routes from './src/routes/'
+
+import {
+  useFonts,
+  Rokkitt_300Light,
+  Rokkitt_400Regular,
+  Rokkitt_500Medium,
+  Rokkitt_700Bold
+} from '@expo-google-fonts/rokkitt'
+import { StatusBar } from 'react-native'
+
+export default function App () {
+  const [fonstLoaded] = useFonts({
+    Rokkitt_300Light,
+    Rokkitt_400Regular,
+    Rokkitt_500Medium,
+    Rokkitt_700Bold
+  })
+
+  if (!fonstLoaded) {
+    return <AppLoading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <>
+      <StatusBar barStyle='dark-content'/>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

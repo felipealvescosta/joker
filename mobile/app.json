@@ -1,11 +1,17 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Joker",
+    "slug": "joker",
     "version": "1.0.0",
+    "icon":"./src/assets/icon.png",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "mobile"
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "name": "Joker"
 }

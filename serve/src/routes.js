@@ -9,7 +9,7 @@ const jokeController = require('./controllers/jokeController');
 
 routes.post('/login', loginController.auth);
 
-// routes.use(authMiddleware);
+routes.use(authMiddleware);
 
 routes.get('/users', userController.index);
 routes.post('/users', userController.create);

@@ -34,7 +34,8 @@ module.exports = {
   },
   async update(request, response) {
     try {
-      const { name, email } = request.body;
+      const { name, email, isAdmin } = request.body.values;
+      console.log(request.body);
       const { id } = request.params;
       const user = await User.findOne({ where: { id } });
 
@@ -43,6 +44,7 @@ module.exports = {
       }
       user.name = name;
       user.email = email;
+      user.isAdmin = isAdmin;
 
       await user.save();
       return response.status(200).json('User uptated!!');
