@@ -59,7 +59,7 @@ To get a local copy up and running follow these simple steps.
 1. Clone the repo
 
 ```sh
-git clone https://github.com/felipealvescosta/joker
+git clone https://github.com/felipealvescosta/joker.git
 ```
 
 2. Install packages
