@@ -85,7 +85,7 @@ expo start
 
 4. To login 
 
-Admin Levl
+Admin Level
 
 ```sh
 E-mai: admin@admin.com
