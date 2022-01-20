@@ -9,6 +9,9 @@ module.exports = {
     try {
       const jokes = await Joke.findAll({
         include: Evaluated,
+        where: {
+          isHidden: false,
+        },
       });
 
       const jokesWithVotes = jokes.map((item) => {
@@ -23,32 +26,38 @@ module.exports = {
         return joke;
       });
 
-      response.status(200).json(jokesWithVotes);
+      return response.status(200).json(jokesWithVotes);
     } catch (error) {
       console.log(error);
-      response.status(400).send(error);
+      return response.status(400).send(error);
     }
   },
 
   async search(request, response) {
     try {
       const { data } = await Api.get('joke/Any?amount=1&type=single');
-      response.status(200).json(data);
+
+      return response.status(200).json(data);
     } catch (error) {
       console.log(error);
-      response.status(400).send(error);
+      return response.status(400).send(error);
     }
   },
 
   async create(request, response) {
-    const { id } = request.body.jokePayload.joke;
-    const { userId, vote } = request.body.jokePayload;
-    console.log(request.body);
-    try {
-      const joke = await Joke.findOne({ where: { id } });
+    const { id, joke } = request.body.jokePayload.joke;
+    const { userId, vote, isHidden } = request.body.jokePayload;
 
-      if (!joke) {
-        await Joke.create(request.body.jokePayload.joke);
+    const jokeInsert = {
+      id,
+      joke,
+      isHidden,
+    };
+
+    try {
+      const jokes = await Joke.findOne({ where: { id } });
+      if (!jokes) {
+        await Joke.create(jokeInsert);
       }
 
       await Evaluated.create({
@@ -57,10 +66,10 @@ module.exports = {
         jokeId: id,
       });
 
-      response.status(201).json('Joke evaluated!!');
+      return response.status(201).json('Joke evaluated!!');
     } catch (error) {
       console.log(error);
-      response.status(400).send(error);
+      return response.status(400).send(error);
     }
   },
 
@@ -73,7 +82,7 @@ module.exports = {
       });
 
       if (!joke) {
-        response.status(400).json('Joke not found');
+        return response.status(400).json('Joke not found');
       }
 
       const usersEvaluators = joke.map((item) => {
@@ -84,31 +93,31 @@ module.exports = {
         return evaluators;
       });
 
-      console.log('jiiji',usersEvaluators);
-      response.status(200).json({usersEvaluators});
+      return response.status(200).json(usersEvaluators);
     } catch (error) {
       console.log(error);
-      response.status(400).send(error);
+      return response.status(400).send(error);
     }
   },
 
   async update(request, response) {
+    const { id } = request.params;
+
     try {
-      const { isHidden } = request.body;
-      const { id: uid } = request.params;
-      const joke = await Joke.findOne({ where: { uid } });
+      const joke = await Joke.findOne({ where: { id } });
 
       if (!joke) {
-        response.status(400).json('Joke not found');
+        return response.status(400).json('Joke not found');
       }
 
-      joke.isHidden = isHidden;
+      joke.isHidden = true;
 
       await joke.save();
-      response.status(200).json('Joke uptated!!');
+
+      return response.status(200).json('Joke uptated!!');
     } catch (error) {
       console.log(error);
-      response.status(400).send(error);
+      return response.status(400).send(error);
     }
   },
 };

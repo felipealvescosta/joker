@@ -16,11 +16,13 @@ module.exports = {
     });
 
     if (!user) {
-      response.status(404).json({ message: 'User not found!' });
+      response.status(200).json({ message: 'User not found!' });
+      return;
     }
 
     if (user.password !== passwordHash) {
-      response.status(401).json({ message: 'Incorrect Password!' });
+      response.status(200).json({ message: 'Incorrect Password!' });
+      return;
     }
 
     const token = jwt.sign(
