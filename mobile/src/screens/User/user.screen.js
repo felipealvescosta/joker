@@ -29,10 +29,13 @@ export function User ({ route }) {
     Alert.alert('Delete user?', '', [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
+        onPress: () => handleBack(),
         style: 'cancel'
       },
-      { text: 'Yes', onPress: () => onDeleteUser() }
+      { 
+        text: 'Yes', 
+        onPress: () => onDeleteUser(), 
+      }
     ])
   }
 

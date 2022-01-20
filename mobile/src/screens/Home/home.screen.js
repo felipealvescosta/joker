@@ -11,7 +11,7 @@ import { Card } from '../../components/Card/card.component'
 import { ListJokes } from '../../components/ListJokes/listJokes.component'
 import { Button } from '../../components/Button/button.component'
 
-import { styles } from './styles'
+import { styles } from './home.styles'
 
 export function Home () {
   const navigation = useNavigation()
@@ -30,6 +30,10 @@ export function Home () {
     navigation.navigate('Users')
   }
 
+  function handleRateJokes () {
+    navigation.navigate('Joke')
+  }
+
   useFocusEffect(
     useCallback(() => {
       setLoading(true)
@@ -42,10 +46,6 @@ export function Home () {
       loadJokes()
     }, [])
   )
-
-  function handleRateJokes(){
-    console.log('click')
-  }
 
   return (
     <>
@@ -65,18 +65,23 @@ export function Home () {
             <ActivityIndicator />
           ) : (
             <>
-            {jokes?.length > 0 ? (
-              <View style={{ height: '60%' }}>
-                <ListJokes jokes={jokes} />
-              </View>
-            ):(
-              <Text style={styles.emptyStatys}>There are no jokes rated yet {'\n'} : /</Text>
-            )
-            }
+              {jokes?.length > 0 ? (
+                <View style={{ height: '60%' }}>
+                  <ListJokes jokes={jokes} />
+                </View>
+              ) : (
+                <Text style={styles.emptyStatys}>
+                  There are no jokes rated yet {'\n'} : /
+                </Text>
+              )}
             </>
           )}
           <View style={styles.footer}>
-            <Button style={styles.buttonRate} title="Rate Jokes" action={handleRateJokes} />
+            <Button
+              style={styles.buttonRate}
+              title='Rate Jokes'
+              action={handleRateJokes}
+            />
           </View>
         </>
       )}

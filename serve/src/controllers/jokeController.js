@@ -1,5 +1,7 @@
 const Joke = require('../models/joke');
 const Evaluated = require('../models/evaluated');
+const User = require('../models/user');
+
 const Api = require('../services/api');
 
 module.exports = {
@@ -31,10 +33,7 @@ module.exports = {
   async search(request, response) {
     try {
       const { data } = await Api.get('joke/Any?amount=1&type=single');
-
-      response.json({
-        data,
-      });
+      response.status(200).json(data);
     } catch (error) {
       console.log(error);
       response.status(400).send(error);
@@ -42,13 +41,14 @@ module.exports = {
   },
 
   async create(request, response) {
-    const { userId, id, vote } = request.body;
-
+    const { id } = request.body.jokePayload.joke;
+    const { userId, vote } = request.body.jokePayload;
+    console.log(request.body);
     try {
       const joke = await Joke.findOne({ where: { id } });
 
       if (!joke) {
-        await Joke.create(request.body);
+        await Joke.create(request.body.jokePayload.joke);
       }
 
       await Evaluated.create({
@@ -64,15 +64,28 @@ module.exports = {
     }
   },
 
-  async one(request, response) {
+  async show(request, response) {
     try {
       const { id } = request.params;
-      const joke = await Joke.findOne({ where: { id } });
+      const joke = await Evaluated.findAll({
+        include: User,
+        where: { jokeId: id },
+      });
 
       if (!joke) {
         response.status(400).json('Joke not found');
       }
-      response.status(200).json(joke);
+
+      const usersEvaluators = joke.map((item) => {
+        const evaluators = {
+          id: item.userId,
+          name: item.user.name,
+        };
+        return evaluators;
+      });
+
+      console.log('jiiji',usersEvaluators);
+      response.status(200).json({usersEvaluators});
     } catch (error) {
       console.log(error);
       response.status(400).send(error);

@@ -14,11 +14,12 @@ export function ListJokes ({ jokes }) {
   const navigation = useNavigation()
 
   function handleJokeDetails (item) {
-    navigation.navigate('Joke', {
+    navigation.navigate('JokeDetails', {
       item
     })
   }
-  return (
+
+  return (  
     <View style={styles.container}>
       <FlatList
         data={jokes}
@@ -30,11 +31,11 @@ export function ListJokes ({ jokes }) {
             onPress={() => handleJokeDetails(item)}
           >
             <View style={styles.content}>
-              <View>
+              <View style={styles.voteArea}>
                 <Text style={styles.votes}>{item.positive.length}</Text>
-                <FontAwesome5 style={styles.thumbs} name="thumbs-up" size={15} solid color="black" />
+                <FontAwesome5 style={styles.thumbs} name="thumbs-up" size={20} solid color="black" />
               </View>
-              <Text style={styles.name}>{item.joke}</Text>
+              <Text style={styles.name}>{item.id}{item.joke}</Text>
             </View>
           </TouchableOpacity>
         )}
@@ -54,15 +55,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 15,
 
-    padding: 5,
 
     borderBottomWidth: 0.5,
-    borderColor: '#5555'
-
-
+    borderColor: '#5555',
   },
   content: {
     flexDirection: 'row',
+  },
+  voteArea: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+
   },
   name: {
     fontSize: 18,
@@ -71,9 +74,16 @@ const styles = StyleSheet.create({
     marginRight: 5,
 
     textAlign: 'center',
+    justifyContent: 'center',
+    width: '90%',
+    marginBottom: 10,
   },
   votes: {
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: 'Rokkitt_400Regular',
   },
+  thumbs: {
+    marginTop: 10,
+    marginBottom: 15,
+  }
 })

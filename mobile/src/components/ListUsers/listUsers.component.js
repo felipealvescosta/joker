@@ -35,7 +35,8 @@ export function ListUsers({users}) {
 
 const styles = StyleSheet.create({
   container: {
-    height:'73%',
+    height:'70%',
+    backgroundColor: 'red',
   },
   list:{
     height:40,
@@ -49,6 +50,5 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 25,
     fontFamily: 'Rokkitt_300Light',
-   
-  }
+  },
 });

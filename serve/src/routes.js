@@ -22,5 +22,6 @@ routes.get('/jokes', jokeController.index);
 routes.post('/jokes', jokeController.create);
 routes.put('/jokes/:id', jokeController.update);
 routes.get('/jokes/search', jokeController.search);
+routes.get('/jokes/:id', jokeController.show);
 
 module.exports = routes;
