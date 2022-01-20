@@ -1,7 +1,7 @@
 <p align="center">
-  <p align="center">
+  <div align="center">
     <img src="assets/icon.png" width="100" />
-  </p>
+  </div>
   <h2 align="center">Joker - A joke game app </h2>
 
   <p align="center">
@@ -25,12 +25,12 @@
 
 ## About The Project
 
-<p align="center">
- <video width="320" heigth="920" controls>
+<div align="center">
+ <video width="320" height="100%" autoplay>
   <source src="assets/video.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
-</p>
+</div>
 
 <br />
 
@@ -44,9 +44,12 @@ Your browser does not support the video tag.
 
 ## See Figma Designer
 
-<div>
-  <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FjzB44faUuatnyGU4kR9WcX%2FJoker%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
-</div>
+-   [Figma Designer ](https://www.figma.com/file/jzB44faUuatnyGU4kR9WcX/Joker?node-id=0%3A1)
+
+
+ <div align="center">
+    <img src="assets/figma.png" width="100%" />
+  </div>
 
 
 ## Getting Started
