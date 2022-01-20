@@ -51,7 +51,6 @@ export default function AuthProvider({children}) {
       api.defaults.headers.Authorization = `Baerer ${data.token}`;
       setToken(data.token);
       setLoadToken(false);
-      // AsyncStorage.removeItem(tokenStorage);
     } else {
       console.log('Token dont exist!');
       setToken(null);

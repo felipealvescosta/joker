@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     margin: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    height: '20%',
   },
   votes:{
     alignItems: 'center',

@@ -32,7 +32,8 @@ export function Joke () {
     const jokePayload = {
       joke,
       vote,
-      userId: id
+      userId: id,
+      isHidden: false,
     }
     
     const response = await api.post('/jokes', {

@@ -2,13 +2,15 @@ import React from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-export function ListUsers({users}) {
+export function ListUsers({users, edit}) {
   const navigation = useNavigation();
 
   function handleUserDetails(item){
-    navigation.navigate('User',{
-      item
-    })
+    if(edit){
+      navigation.navigate('User',{
+        item
+      })
+    }
   }
   return (
     <View style={styles.container}>
@@ -35,8 +37,7 @@ export function ListUsers({users}) {
 
 const styles = StyleSheet.create({
   container: {
-    height:'70%',
-    backgroundColor: 'red',
+    height:'73%',
   },
   list:{
     height:40,
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     borderColor: '#5555'
   },
   name: {
-    fontSize: 25,
+    fontSize: 20,
     fontFamily: 'Rokkitt_300Light',
   },
 });

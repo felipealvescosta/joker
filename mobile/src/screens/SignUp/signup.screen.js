@@ -170,7 +170,7 @@ export default function SignUp () {
             {loading ? (
               <ActivityIndicator color='#fff' size='small' />
             ) : (
-              <Text style={styles.buttontext}>Sign In</Text>
+              <Text style={styles.buttontext}>Register Now</Text>
             )}
           </TouchableOpacity>
         </Animatable.View>

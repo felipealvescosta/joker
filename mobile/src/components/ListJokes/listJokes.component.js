@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   FlatList,
   StyleSheet,
-  ScrollView,
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -35,7 +34,7 @@ export function ListJokes ({ jokes }) {
                 <Text style={styles.votes}>{item.positive.length}</Text>
                 <FontAwesome5 style={styles.thumbs} name="thumbs-up" size={20} solid color="black" />
               </View>
-              <Text style={styles.name}>{item.id}{item.joke}</Text>
+              <Text style={styles.name}>{item.joke}</Text>
             </View>
           </TouchableOpacity>
         )}

@@ -7,6 +7,7 @@ import { Users } from '../screens/Users/users.screen'
 import { User } from '../screens/User/user.screen'
 import { NewUser } from '../screens/NewUser/newUser.screen'
 import { Joke } from '../screens/Joke/joke.screen'
+import { Jokes } from '../screens/Jokes/jokes.screen'
 import { JokeDetails } from '../screens/JokeDetails/jokeDetails.screen'
 
 const Stack = createStackNavigator()
@@ -22,7 +23,6 @@ export function AppRoutes () {
             headerShown: false
           }}
         />
-
         <Stack.Screen
           name='Users'
           component={Users}
@@ -30,7 +30,6 @@ export function AppRoutes () {
             headerShown: false
           }}
         />
-
         <Stack.Screen
           name='User'
           component={User}
@@ -45,14 +44,21 @@ export function AppRoutes () {
             headerShown: false
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name='Joke'
           component={Joke}
           options={{
             headerShown: false
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
+          name='Jokes'
+          component={Jokes}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
           name='JokeDetails'
           component={JokeDetails}
           options={{

@@ -7,7 +7,7 @@ import { Header } from '../../components/Header/header.component'
 import { ListUsers } from '../../components/ListUsers/listUsers.component'
 import { Footer } from '../../components/Footer/footer.component'
 
-import { styles } from './styles'
+import { styles } from './users.styles'
 
 export function Users () {
   const [users, setUsers] = useState()
@@ -41,7 +41,7 @@ export function Users () {
           <ActivityIndicator style={styles.load} />
         ) : (
           <View>
-            <ListUsers users={users} />
+            <ListUsers users={users} edit/>
             <Footer name='Register new user' action={handleNewUser} />
           </View>
         )}

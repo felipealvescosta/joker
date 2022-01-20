@@ -17,7 +17,7 @@ export function Home () {
   const navigation = useNavigation()
   const [jokes, setJokes] = useState()
   const [loading, setLoading] = useState(false)
-  const { data } = useAuth()
+  const { data, signOut } = useAuth()
   const { name, isAdmin } = data.user
 
   function getFirtsName (name) {
@@ -30,8 +30,17 @@ export function Home () {
     navigation.navigate('Users')
   }
 
+
+  function handleListJokes () {
+    navigation.navigate('Jokes')
+  }
+
   function handleRateJokes () {
     navigation.navigate('Joke')
+  }
+
+  function handleSignOut(){
+    signOut();
   }
 
   useFocusEffect(
@@ -49,14 +58,14 @@ export function Home () {
 
   return (
     <>
-      <Header />
+      <Header hidden action={handleSignOut} />
 
       <Text style={styles.title}>Hi, {getFirtsName(name)}!</Text>
       {isAdmin ? (
         <>
           <Text style={styles.panel}>Admin Panel</Text>
           <Card name='Users' action={handleListUsers} />
-          <Card name='Jokes' action={() => {}} />
+          <Card name='Jokes' action={handleListJokes} />
         </>
       ) : (
         <>

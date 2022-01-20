@@ -1,36 +1,55 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView} from 'react-native';
+import React from 'react'
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity
+} from 'react-native'
+import { FontAwesome5 } from '@expo/vector-icons'
 
-export function Header() {
+export function Header ({hidden, action}) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require('../../assets/icon.png')}
-        />
-        <Text style={styles.title}>Joker</Text>
+        <View style={styles.brand}>
+          <Image
+            style={styles.logo}
+            source={require('../../assets/icon.png')}
+          />
+          <Text style={styles.title}>Joker</Text>
+        </View>
+        {hidden &&
+        (
+          <TouchableOpacity onPress={action}>
+            <FontAwesome5 name='sign-out-alt' solid size={20} color={'#000'}/>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
-  );
+  )
 }
-
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '90%',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 15,
+    justifyContent: 'space-between',
+    margin: 15
+  },
+  brand: {
+    flexDirection: 'row',
   },
   logo: {
-    width:50,
-    height:50,
+    width: 50,
+    height: 50
   },
   title: {
     fontSize: 35,
     marginLeft: 10,
     marginTop: 5,
-    fontFamily: 'Rokkitt_500Medium',
-  },
-});
+    fontFamily: 'Rokkitt_500Medium'
+  }
+})
