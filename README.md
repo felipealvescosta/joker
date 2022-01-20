@@ -26,10 +26,10 @@
 ## About The Project
 
 <p align="center">
-  <video width="320" autoplay="true">
-    <source src="assets/video.mp4" type="video/mp4"> 
-  Your browser does not support the video tag.
-    </video>
+ <video width="320" heigth="920" controls>
+  <source src="assets/video.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 </p>
 
 <br />
@@ -44,7 +44,9 @@
 
 ## See Figma Designer
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FjzB44faUuatnyGU4kR9WcX%2FJoker%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+<div>
+  <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FjzB44faUuatnyGU4kR9WcX%2FJoker%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
+</div>
 
 
 ## Getting Started
