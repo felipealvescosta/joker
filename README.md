@@ -26,10 +26,7 @@
 ## About The Project
 
 <div align="center">
- <video width="320" height="100%" autoplay>
-  <source src="assets/video.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+  <img src="assets/video.gif" width="50%"/>
 </div>
 
 <br />
@@ -41,6 +38,7 @@ Your browser does not support the video tag.
 -   [Node](https://nodejs.org/en/)
 -   [Express ](https://expressjs.com/pt-br/)
 -   [Sequelize ](https://sequelize.org/)
+-   [Sqlite3 ](https://www.sqlite.org/index.html)
 
 ## See Figma Designer
 
@@ -83,6 +81,18 @@ Run Mobile App
 ```sh
 expo start
 ```
+
+
+4. To login 
+
+Admin Levl
+
+```sh
+E-mai: admin@admin.com
+Password: admin
+```
+
+
 
 
 
